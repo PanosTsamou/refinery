@@ -1,4 +1,4 @@
 package tsamou.refinery.controller;
 
-public class InstrumentController {
+public class MeterController {
 }
