@@ -44,22 +44,6 @@ public class Meter {
     public Meter() {
     }
 
-    public boolean isStock() {
-        return stock;
-    }
-
-    public void setStock(boolean stock) {
-        this.stock = stock;
-    }
-
-    public Integer getStock_level() {
-        return stock_level;
-    }
-
-    public void setStock_level(Integer stock_level) {
-        this.stock_level = stock_level;
-    }
-
     public Meter(String name, String brand, String model, String type, String kind, Integer year, String status, Double value, boolean stock, Integer stock_level) {
         this.name = name;
         this.brand = brand;
@@ -136,4 +120,19 @@ public class Meter {
     public void setValue(Double value) {
         this.value = value;
     }
+
+    public Boolean getStock() { return  stock; }
+
+    public void setStock(boolean stock) {
+        this.stock = stock;
+    }
+
+    public Integer getStock_level() {
+        return stock_level;
+    }
+
+    public void setStock_level(Integer stock_level) {
+        this.stock_level = stock_level;
+    }
+
 }
