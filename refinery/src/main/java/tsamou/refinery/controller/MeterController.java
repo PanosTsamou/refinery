@@ -18,19 +18,19 @@ public class MeterController {
     MeterRepository meterRepository;
 
     @GetMapping ("/meters")
-    public ResponseEntity<List<Meter>> getAllMeters(){
-        return new ResponseEntity<>(meterRepository.findAll(), HttpStatus.OK);
+    public List<Meter> getAllMeters(){
+        return meterRepository.findAll();
     }
 
     @GetMapping ("/meters/{id}")
-    public  ResponseEntity<Optional<Meter>> getMeterById(@PathVariable Long id){
-        return new ResponseEntity<>(meterRepository.findById(id), HttpStatus.OK);
+    public  Optional<Meter> getMeterById(@PathVariable Long id){
+        return meterRepository.findById(id);
     }
 
     @PostMapping ("/meters")
     public ResponseEntity<Meter> saveMeter(@RequestBody Meter meter){
         meterRepository.save(meter);
-        return new ResponseEntity<>(meter,HttpStatus.OK);
+        return new ResponseEntity<>(meter,HttpStatus.CREATED);
     }
 
     @PutMapping ("/meters/{id}")
@@ -39,5 +39,12 @@ public class MeterController {
         MeterHelper.updateMeter(meterToBeUpdated, meter);
         meterRepository.save(meterToBeUpdated);
         return new ResponseEntity<>(meterToBeUpdated, HttpStatus.OK);
+    }
+
+    @DeleteMapping ("/meters/{id}")
+    public ResponseEntity<Meter> deleteMeter(@PathVariable Long id){
+        Meter deletedMeter = meterRepository.findById(id).get();
+        meterRepository.deleteById(id);
+        return new ResponseEntity<>(deletedMeter, HttpStatus.OK);
     }
 }

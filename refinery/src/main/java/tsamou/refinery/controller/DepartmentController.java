@@ -18,17 +18,17 @@ public class DepartmentController {
     DepartmentRepository departmentRepository;
 
     @GetMapping ("/departments")
-    public ResponseEntity <List<Department>> getAllDepartments(){
-        return new ResponseEntity<> (departmentRepository.findAll(), HttpStatus.OK);
+    public List<Department> getAllDepartments(){
+        return departmentRepository.findAll();
     }
     @GetMapping ("/departments/{id}")
-    public ResponseEntity<Optional<Department>> getDepartmentById(@PathVariable  Long id){
-        return new ResponseEntity<>(departmentRepository.findById(id), HttpStatus.OK);
+    public Optional<Department> getDepartmentById(@PathVariable  Long id){
+        return departmentRepository.findById(id);
     }
    @PostMapping ("/departments")
    public ResponseEntity<Department> postDepartment(@RequestBody Department department){
         departmentRepository.save(department);
-        return new ResponseEntity<> (department, HttpStatus.OK);
+        return new ResponseEntity<> (department, HttpStatus.CREATED);
    }
 
    @PutMapping ("/departments/{id}")

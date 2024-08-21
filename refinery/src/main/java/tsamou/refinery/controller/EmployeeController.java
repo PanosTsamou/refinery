@@ -18,19 +18,19 @@ public class EmployeeController {
     EmployeeRepository employeeRepository;
 
     @GetMapping ("/employees")
-    public ResponseEntity<List<Employee>> getAllEmployees(){
-        return new ResponseEntity<> (employeeRepository.findAll(), HttpStatus.OK);
+    public List<Employee> getAllEmployees(){
+        return employeeRepository.findAll();
     }
 
     @GetMapping ("/employees/{id}")
-    public ResponseEntity<Optional<Employee>> getEmployeeById(@PathVariable Long id){
-        return new ResponseEntity<>(employeeRepository.findById(id), HttpStatus.OK);
+    public Optional<Employee> getEmployeeById(@PathVariable Long id){
+        return employeeRepository.findById(id);
     }
 
     @PostMapping ("/employees")
     public  ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
         employeeRepository.save(employee);
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
     @PutMapping ("/employees/{id}")
@@ -39,5 +39,12 @@ public class EmployeeController {
         EmployeeHelper.updateEmployee(employeeToBeUpdated,employee);
         employeeRepository.save(employeeToBeUpdated);
         return new ResponseEntity<>(employeeToBeUpdated,HttpStatus.OK);
+    }
+
+    @DeleteMapping ("/employees/{id}")
+    public ResponseEntity<Employee> deleteEmployee(@PathVariable Long id){
+        Employee deletedEmployee = employeeRepository.findById(id).get();
+        employeeRepository.deleteById(id);
+        return new ResponseEntity<>(deletedEmployee, HttpStatus.OK);
     }
 }
