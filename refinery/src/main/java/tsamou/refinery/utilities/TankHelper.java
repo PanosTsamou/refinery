@@ -8,5 +8,7 @@ public class TankHelper {
         tankToBeUpdated.setType(tank.getType());
         tankToBeUpdated.setStoring(tank.getStoring());
         tankToBeUpdated.setVolume(tank.getVolume());
+        tankToBeUpdated.setSection(tank.getSection());
+        tankToBeUpdated.setId(tank.getId());
     }
 }

@@ -15,6 +15,7 @@ public class MeterHelper {
         meterToBeUpdated.setYear(meter.getYear());
         meterToBeUpdated.setType(meter.getType());
         meterToBeUpdated.setValue(meter.getValue());
+        meterToBeUpdated.setSection(meter.getSection());
 
     }
 }

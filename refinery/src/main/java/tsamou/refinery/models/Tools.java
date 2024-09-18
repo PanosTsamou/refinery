@@ -1,6 +1,9 @@
 package tsamou.refinery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table (name = "Tools")
@@ -26,20 +29,33 @@ public class Tools {
     @Column (name = "Stock_Level")
     private  Integer stock_level;
 
+    @ManyToMany (mappedBy = "tools")
+    private List<Employee> employees;
+
     public Tools() {
     }
 
-    public Tools(String name, String type, String size, Boolean stock, Integer stock_level) {
+
+
+    public Tools(String name, String type, String size, Boolean stock, Integer stock_level, List<Employee> employees) {
         this.name = name;
         this.type = type;
         this.size = size;
         this.stock = stock;
         this.stock_level = stock_level;
+        this.employees = employees;
     }
-
 
     public String getName() {
         return name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -76,5 +92,12 @@ public class Tools {
 
     public void setStock_level(Integer stock_level) {
         this.stock_level = stock_level;
+    }
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

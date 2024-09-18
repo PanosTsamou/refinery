@@ -13,5 +13,6 @@ public class ActuatorHelper {
         actuatorToBeUpdated.setYear(actuator.getYear());
         actuatorToBeUpdated.setValue(actuator.getValue());
         actuatorToBeUpdated.setStockLevel(actuator.getStockLevel());
+        actuatorToBeUpdated.setSection(actuator.getSection());
     }
 }

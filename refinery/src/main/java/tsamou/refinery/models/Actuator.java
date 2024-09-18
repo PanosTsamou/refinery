@@ -9,44 +9,49 @@ public class Actuator {
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
     @Column (name = "Id")
-    public Long id;
+    private Long id;
 
     @Column (name = "Name")
-    public String name;
+    private String name;
 
     @Column (name = "Brand")
-    public String brand;
+    private String brand;
 
     @Column (name = "Model")
-    public String model;
+    private String model;
 
     @Column (name = "Type")
-    public String type;
+    private String type;
 
     @Column (name = "Year")
-    public Integer Year;
+    private Integer year;
 
     @Column (name = "Stocking")
-    public Boolean stocking;
+    private Boolean stocking;
 
     @Column (name = "Stock_Level")
-    public Boolean stockLevel;
+    private Integer stockLevel;
 
     @Column (name = "Value")
-    public Boolean value;
+    private Integer value;
+
+    @ManyToOne
+    @JoinColumn (name = "section_id")
+    private Section section;
 
     public Actuator() {
     }
 
-    public Actuator(String name, String brand, String model, String type, Integer year, Boolean stocking, Boolean stockLevel, Boolean value) {
+    public Actuator(String name, String brand, String model, String type, Integer year, Boolean stocking, Integer stockLevel, Integer value, Section section) {
         this.name = name;
         this.brand = brand;
         this.model = model;
         this.type = type;
-        Year = year;
+        this.year = year;
         this.stocking = stocking;
         this.stockLevel = stockLevel;
         this.value = value;
+        this.section = section;
     }
 
     public Long getId() {
@@ -90,11 +95,11 @@ public class Actuator {
     }
 
     public Integer getYear() {
-        return Year;
+        return year;
     }
 
     public void setYear(Integer year) {
-        Year = year;
+        this.year = year;
     }
 
     public Boolean getStocking() {
@@ -105,19 +110,27 @@ public class Actuator {
         this.stocking = stocking;
     }
 
-    public Boolean getStockLevel() {
+    public Integer getStockLevel() {
         return stockLevel;
     }
 
-    public void setStockLevel(Boolean stockLevel) {
+    public void setStockLevel(Integer stockLevel) {
         this.stockLevel = stockLevel;
     }
 
-    public Boolean getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(Boolean value) {
+    public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
     }
 }
