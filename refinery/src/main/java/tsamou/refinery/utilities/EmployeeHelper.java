@@ -17,8 +17,8 @@ public class EmployeeHelper {
         employeeToBeUpdated.setApprovals(employee.getApprovals());
         employeeToBeUpdated.setWork_permits(employee.getWork_permits());
         employeeToBeUpdated.setWorking_orders(employee.getWorking_orders());
-        employeeToBeUpdated.setTools(employee.getTools());
         employeeToBeUpdated.setUnit(employee.getUnit());
         employeeToBeUpdated.setDepartment(employee.getDepartment());
+        employeeToBeUpdated.setToolBox(employee.getToolBox());
     }
 }

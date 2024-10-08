@@ -55,13 +55,9 @@ public class Employee implements Serializable {
     @JoinColumn (name = "unit_id")
     private Unit unit;
 
-    @ManyToMany
-    @JoinTable(
-            name = "toolbox",
-            joinColumns = @JoinColumn (name = "employee_id"),
-            inverseJoinColumns = @JoinColumn (name = "tool_id")
-    )
-    private List<Tools> tools;
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn (name = "toolbox_id")
+    private ToolBox toolBox;
 
     @OneToMany (mappedBy = "orderBy")
     private List<WorkingOrder> working_orders;
@@ -75,7 +71,7 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(String id_number, String first_name, String last_name, String full_name, Integer age, Address address, String office_phone_number, String personal_phone_number, String working_role, Boolean working_status, Department department, Unit unit, List<Tools> tools, List<WorkingOrder> working_orders, List<WorkPermit> work_permits, List<WorkPermitApprovals> approvals) {
+    public Employee(String id_number, String first_name, String last_name, String full_name, Integer age, Address address, String office_phone_number, String personal_phone_number, String working_role, Boolean working_status, Department department, Unit unit, ToolBox toolBox, List<WorkingOrder> working_orders, List<WorkPermit> work_permits, List<WorkPermitApprovals> approvals) {
         this.id_number = id_number;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -88,7 +84,7 @@ public class Employee implements Serializable {
         this.working_status = working_status;
         this.department = department;
         this.unit = unit;
-        this.tools = tools;
+        this.toolBox = toolBox;
         this.working_orders = working_orders;
         this.work_permits = work_permits;
         this.approvals = approvals;
@@ -100,14 +96,6 @@ public class Employee implements Serializable {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public List<Tools> getTools() {
-        return tools;
-    }
-
-    public void setTools(List<Tools> tools) {
-        this.tools = tools;
     }
 
     public Long getId() {
@@ -230,5 +218,13 @@ public class Employee implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public ToolBox getToolBox() {
+        return toolBox;
+    }
+
+    public void setToolBox(ToolBox toolBox) {
+        this.toolBox = toolBox;
     }
 }
