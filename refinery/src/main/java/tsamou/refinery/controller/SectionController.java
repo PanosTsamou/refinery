@@ -18,19 +18,19 @@ public class SectionController {
     SectionRepository sectionRepository;
 
     @GetMapping ("/sections")
-    public ResponseEntity<List<Section>> getAllSections(){
-        return new ResponseEntity<>(sectionRepository.findAll(), HttpStatus.OK);
+    public List<Section> getAllSections(){
+        return sectionRepository.findAll();
     }
 
     @GetMapping ("/sections/{id}")
-    public ResponseEntity<Optional<Section>> getSectionById(@PathVariable Long id){
-        return new ResponseEntity<>(sectionRepository.findById(id), HttpStatus.OK);
+    public Optional<Section> getSectionById(@PathVariable Long id){
+        return sectionRepository.findById(id);
     }
 
     @PostMapping ("/sections")
     public ResponseEntity<Section> saveSection(@RequestBody Section section){
         sectionRepository.save(section);
-        return  new ResponseEntity<>(section, HttpStatus.OK);
+        return  new ResponseEntity<>(section, HttpStatus.CREATED);
     }
 
     @PutMapping ("/sections/{id}")
