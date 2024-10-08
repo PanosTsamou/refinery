@@ -41,10 +41,14 @@ public class Meter {
     @Column (name = "Stock_Level")
     private Integer stock_level;
 
+    @ManyToOne
+    @JoinColumn (name = "section_id")
+    private Section section;
+
     public Meter() {
     }
 
-    public Meter(String name, String brand, String model, String type, String kind, Integer year, String status, Double value, boolean stock, Integer stock_level) {
+    public Meter(String name, String brand, String model, String type, String kind, Integer year, String status, Double value, boolean stock, Integer stock_level, Section section) {
         this.name = name;
         this.brand = brand;
         this.model = model;
@@ -55,6 +59,19 @@ public class Meter {
         this.value = value;
         this.stock = stock;
         this.stock_level = stock_level;
+        this.section = section;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isStock() {
+        return stock;
     }
 
     public String getName() {
@@ -135,4 +152,11 @@ public class Meter {
         this.stock_level = stock_level;
     }
 
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
 }
